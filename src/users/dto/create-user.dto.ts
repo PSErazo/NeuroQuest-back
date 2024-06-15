@@ -1,6 +1,12 @@
-import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsString, } from "class-validator";
+// import { UUID, randomUUID } from "crypto";
 
 export class CreateUserDto {
+
+
+    // @IsUUID()
+    // @
+//     // readonly idUser: UUID
 
     @IsString()
     readonly name: string;
@@ -12,7 +18,4 @@ export class CreateUserDto {
     @IsNotEmpty()
     @IsString()
     readonly password: string;
-
-    @IsString()
-    readonly telephone: string;
 }

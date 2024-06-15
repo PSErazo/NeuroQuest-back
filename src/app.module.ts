@@ -1,12 +1,16 @@
 import { Module } from '@nestjs/common';
-import { AuthModule } from './auth/auth.module';
-import { TasksModule } from './tasks/tasks.module';
-import { ProjectsModule } from './projects/projects.module';
 import { UsersModule } from './users/users.module';
-import { Mongoose } from 'mongoose';
 import { MongooseModule } from '@nestjs/mongoose';
+import { AuthModule } from './auth/auth.module';
+import { UsersService } from './users/users.service';
+import { ScoreModule } from './score/score.module';
 
 @Module({
-  imports: [AuthModule,MongooseModule.forRoot('mongodb://localhost/nq'), TasksModule, ProjectsModule, UsersModule]
+  imports: [MongooseModule
+    .forRoot('mongodb+srv://ronpaseo:ceu6IEm5mRDVaILL@cluster0.0apsziv.mongodb.net/nq'), 
+    UsersModule,
+    AuthModule,
+    ScoreModule,
+    ]
 })
 export class AppModule {}
