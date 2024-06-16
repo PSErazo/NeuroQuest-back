@@ -1,8 +1,8 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateScoreDto {
 
-    @IsNotEmpty()
+    @IsEmail()
     @IsString()
     email: string;
 

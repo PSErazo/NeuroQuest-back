@@ -19,9 +19,11 @@ export class ScoreService {
     return `This action returns all score`;
   }
 
-  // async findOneByUser(email:string): Score[]{
-  //   const scores = await this.scoreModule.findOne({email});
-
+  // async findOnebyUser(email:string){
+  //   console.log("entrando al servicio", email);
+  //   const scores = await this.scoreModule.findById({email}).exec();
+  //   console.log("entrando al servicio", scores);
+    
   //   return scores
   // }
 
