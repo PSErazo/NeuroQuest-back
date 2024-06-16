@@ -1,6 +1,5 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Request } from 'express';
-import { Observable } from 'rxjs';
 import { jwtConstants } from '../constants/jwt.constant';
 import { JwtService } from '@nestjs/jwt';
 
@@ -32,8 +31,6 @@ export class AuthGuard implements CanActivate {
           secret: jwtConstants.secret
         }
       );
-      // 💡 We're assigning the payload to the request object here
-      // so that we can access it in our route handlers
       request['user'] = payload;
     } catch {
       throw new UnauthorizedException();

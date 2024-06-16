@@ -30,13 +30,10 @@ export class AuthService {
         if(!user){
             throw new UnauthorizedException(' email is wrong')
         }
-
         const isPasswordValid = await bcrypt.compare(login.password, user.password)
-
         if(!isPasswordValid){
             throw new UnauthorizedException('password is wrong')
         }
-
         const payload = {
             email:user.email
         }

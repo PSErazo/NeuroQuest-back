@@ -9,7 +9,7 @@ export class ScoreController {
   constructor(private readonly scoreService: ScoreService) {}
 
   @Post()
-  create(@Body() createScoreDto: CreateScoreDto) {
+  create(@Body() createScoreDto:CreateScoreDto) {
     return this.scoreService.create(createScoreDto);
   }
 

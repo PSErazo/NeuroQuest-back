@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateScoreDto } from './dto/create-score.dto';
-import { UpdateScoreDto } from './dto/update-score.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { Score, ScoreDocument } from './schemas/user.schema';
+import { Score, ScoreDocument } from './schemas/score.schema';
 import { Model } from 'mongoose';
 
 @Injectable()
