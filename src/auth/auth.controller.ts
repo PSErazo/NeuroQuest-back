@@ -17,9 +17,9 @@ export class AuthController {
     login(@Body() login: LoginDto){
         return this.authService.login(login);
     }
-    @Get('perfil')
-    @UseGuards(AuthGuard)
-    perfil(){
-        return 'perfilito'
-    }
+    // @Get('perfil')
+    // @UseGuards(AuthGuard)
+    // perfil(){
+    //     return 'perfilito'
+    // }
 }

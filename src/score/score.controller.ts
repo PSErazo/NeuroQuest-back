@@ -1,6 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { ScoreService } from './score.service';
 import { CreateScoreDto } from './dto/create-score.dto';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
+
+@UseGuards(AuthGuard)
 @Controller('score')
 export class ScoreController {
   constructor(private readonly scoreService: ScoreService) {}
@@ -10,23 +13,13 @@ export class ScoreController {
     return this.scoreService.create(createScoreDto);
   }
 
-  // @Get()
-  // findbyUser(@Body() email: string){
-  //   return this.scoreService.findOnebyUser(email);
-  // }
+  @Get(':email')
+  findbyUser(@Param('email') email: string){
+    return this.scoreService.findbyUser(email);
+  }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.scoreService.findOne(+id);
-  // }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateScoreDto: UpdateScoreDto) {
-  //   return this.scoreService.update(+id, updateScoreDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.scoreService.remove(+id);
-  // }
+  @Get('game/:game')
+  findOne(@Param('game') game: string) {
+    return this.scoreService.findbyGame(game);
+  }
 }

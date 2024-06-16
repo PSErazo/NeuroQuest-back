@@ -15,23 +15,19 @@ export class ScoreService {
     return this.scoreModule.create(createScoreDto);
   }
 
-  findAll() {
-    return `This action returns all score`;
-  }
-
-  // async findOnebyUser(email:string){
-  //   console.log("entrando al servicio", email);
-  //   const scores = await this.scoreModule.findById({email}).exec();
-  //   console.log("entrando al servicio", scores);
+  async findbyUser(email:string){
+    console.log("entrando al servicio", email);
+    const scores = await this.scoreModule.find({email:email}).exec();
+    console.log("entrando al servicio", scores);
     
-  //   return scores
-  // }
-
-  update(id: number, updateScoreDto: UpdateScoreDto) {
-    return `This action updates a #${id} score`;
+    return scores
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} score`;
+  async findbyGame(game:string){
+    console.log("entrando al servicio", game);
+    const scoreGame = await this.scoreModule.find({game:game}).exec();
+    console.log("entrando al servicio", scoreGame);
+    
+    return scoreGame
   }
 }
