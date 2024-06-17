@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
-import { UsersService } from 'src/users/users.service';
+import { UserService } from 'src/user/user.service';
 import { RegisterDto } from './dto/register.dto';
 
 import * as bcrypt from 'bcrypt';
@@ -10,7 +10,7 @@ import { JwtService } from '@nestjs/jwt';
 export class AuthService {
 
     constructor(
-        private readonly usersService: UsersService,
+        private readonly usersService: UserService,
         private readonly jwtService: JwtService
     ){
 

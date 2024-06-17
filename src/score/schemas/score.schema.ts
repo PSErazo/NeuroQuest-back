@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Document, HydratedDocument } from "mongoose";
 
 
-export type ScoreDocument = Score & Document
+export type ScoreDocument = HydratedDocument<Score>
 
 @Schema()
 export class Score {
@@ -14,6 +14,9 @@ export class Score {
 
     @Prop({required: true})
     game: string;
+
+    @Prop()
+    date?: Date;
 }
 
 export const ScoreSchema = SchemaFactory.createForClass(Score);

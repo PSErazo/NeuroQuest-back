@@ -20,6 +20,7 @@ async function bootstrap() {
     .setTitle('API NeuroQuest')
     .setDescription('NeuroQuest API Documentation')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('nq', app, document);

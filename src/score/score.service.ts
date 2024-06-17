@@ -7,11 +7,11 @@ import { Model } from 'mongoose';
 @Injectable()
 export class ScoreService {
   constructor(
-    @InjectModel(Score.name) private scoreModule: Model<ScoreDocument>
+    @InjectModel(Score.name) private scoreModule: Model<Score>
   ){}
 
   create(createScoreDto: CreateScoreDto) {
-    return this.scoreModule.create(createScoreDto);
+    return this.scoreModule.create({...createScoreDto, date: new Date()});
   }
 
   async findbyUser(email:string){
