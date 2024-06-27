@@ -30,6 +30,7 @@ export class AuthService {
         if(!user){
             throw new UnauthorizedException(' email is wrong')
         }
+        // se puede usar un prefijo para volverlo mas seguridad.
         const isPasswordValid = await bcrypt.compare(login.password, user.password)
         if(!isPasswordValid){
             throw new UnauthorizedException('password is wrong')
@@ -42,7 +43,6 @@ export class AuthService {
         return {
             token,
             ...{ name: user.name, email: user.email}
-
         }
 
 

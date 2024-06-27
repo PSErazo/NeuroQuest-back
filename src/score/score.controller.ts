@@ -14,6 +14,7 @@ export class ScoreController {
 
   @Post()
   create(@Body() createScoreDto:CreateScoreDto) {
+    
     return this.scoreService.create(createScoreDto);
   }
 
