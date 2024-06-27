@@ -10,6 +10,10 @@ import { ApiTags } from '@nestjs/swagger';
 export class AuthController {
     constructor(private authService: AuthService                
     ){}
+    @Get()
+    registro(){
+        return 'hello world'
+    }
     @Post('register')
     register(@Body() registerDto: RegisterDto){
         return this.authService.register(registerDto);
