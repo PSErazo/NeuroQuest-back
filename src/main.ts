@@ -5,6 +5,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const port = process.env.PORT || 3000;
 
   app.setGlobalPrefix('api/v1')
   app.useGlobalPipes(
@@ -26,6 +27,6 @@ async function bootstrap() {
   SwaggerModule.setup('nq', app, document);
 
 
-  await app.listen(3000);
+  await app.listen(port);
 }
 bootstrap();
