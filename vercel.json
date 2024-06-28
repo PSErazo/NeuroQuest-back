@@ -1,6 +1,6 @@
 {
     "builds":[{
-        "src": "/dist/main.js",
+        "src": "/dist",
         "use": "@vercel/node"
     }],
     "routes":[{
