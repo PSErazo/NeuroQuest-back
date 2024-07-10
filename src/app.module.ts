@@ -1,15 +1,23 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './user/user.module';
+import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+
+import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ScoreModule } from './score/score.module';
 
 @Module({
-  imports: [MongooseModule
-    .forRoot('mongodb+srv://ronpaseo:ceu6IEm5mRDVaILL@cluster0.0apsziv.mongodb.net/nq'), 
+  imports: [
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.MONGO_URI), 
     UserModule,
     AuthModule,
     ScoreModule,
     ]
 })
-export class AppModule {}
+export class AppModule {
+  // constructor(){
+  //   console.log( process.env);
+    
+  // }
+}

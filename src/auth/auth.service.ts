@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import { RegisterDto } from './dto/register.dto';
 
@@ -18,31 +18,32 @@ export class AuthService {
 
     async register(registerDto: RegisterDto){
 
-        const user = await this.usersService.findOneByEmail(registerDto.email);
-        if(user){throw new BadRequestException('User already exists') }
+        // const user = await this.usersService.findOneByEmail(registerDto.email);
+        // if(user){throw new BadRequestException('User already exists') }
          
         const {email, password, name} = registerDto
-        return await this.usersService.create({email, password: await bcrypt.hash(password,10), name});
+        await this.usersService.create({email, password: bcrypt.hashSync(password,10), name});
+        return {user: {email, name}}
     }
 
     async login(login: LoginDto){
         const user = await this.usersService.findOneByEmail(login.email);
         if(!user){
-            throw new UnauthorizedException(' email is wrong')
+            throw new UnauthorizedException('correo inorrecto')
         }
         // se puede usar un prefijo para volverlo mas seguridad.
         const isPasswordValid = await bcrypt.compare(login.password, user.password)
         if(!isPasswordValid){
-            throw new UnauthorizedException('password is wrong')
+            throw new UnauthorizedException('contraseña incorrecta')
         }
         const payload = {
-            email:user.email
+            email:user.email,
         }
         const token = await this.jwtService.signAsync(payload)
 
         return {
             token,
-            ...{ name: user.name, email: user.email}
+            user:{ name: user.name, email: user.email}
         }
 
 

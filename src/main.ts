@@ -10,14 +10,15 @@ async function bootstrap() {
   app.enableCors();
 
   app.setGlobalPrefix('api/v1')
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
-      transform: true
+      transform: true,
+      enableDebugMessages: true
     })
   )
-
 
   const config = new DocumentBuilder()
     .setTitle('API NeuroQuest')
