@@ -5,7 +5,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Score, ScoreSchema } from './schemas/score.schema';
 
 @Module({
-  imports: [MongooseModule.forFeature([{name: Score.name, schema: ScoreSchema}])],
+  imports: [
+    MongooseModule.forFeature([{ name: Score.name, schema: ScoreSchema }]),
+  ],
   controllers: [ScoreController],
   providers: [ScoreService],
 })
