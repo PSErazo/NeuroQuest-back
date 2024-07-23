@@ -3,7 +3,6 @@ import { CreateScoreDto } from './dto/create-score.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Score, ScoreDocument } from './schemas/score.schema';
 import { Model } from 'mongoose';
-import { find } from 'rxjs';
 
 @Injectable()
 export class ScoreService {
@@ -39,6 +38,11 @@ export class ScoreService {
       .group({
         _id: '$email',
         maxPuntaje: { $max: '$score' },
+      })
+      .project({
+        _id: 0,
+        email: '$_id',
+        maxPuntaje: 2,
       })
       .sort({ maxPuntaje: -1 })
       .exec();
