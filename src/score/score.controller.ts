@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   Request,
+  HttpCode,
 } from '@nestjs/common';
 import { ScoreService } from './score.service';
 import { CreateScoreDto } from './dto/create-score.dto';
