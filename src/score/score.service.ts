@@ -45,6 +45,7 @@ export class ScoreService {
         maxPuntaje: 2,
       })
       .sort({ maxPuntaje: -1 })
+      .limit(10)
       .exec();
     return scoreGame;
   }
@@ -63,6 +64,7 @@ export class ScoreService {
         minPuntaje: 2,
       })
       .sort({ minPuntaje: 1 })
+      .limit(10)
       .exec();
     return scoreGame;
   }
