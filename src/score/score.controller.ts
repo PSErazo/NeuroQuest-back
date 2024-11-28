@@ -9,6 +9,7 @@ import {
   UseGuards,
   Request,
   HttpCode,
+  Query,
 } from '@nestjs/common';
 import { ScoreService } from './score.service';
 import { CreateScoreDto } from './dto/create-score.dto';
@@ -35,10 +36,12 @@ export class ScoreController {
     return this.scoreService.findOneScoreByUserAndGame(email, game);
   }
 
-  @Get('scores/:game')
-  findOne(@Param('game') game: number) {
+  @Get('top/:game')
+  findOne(@Param('game') game: number, @Query('top') top?: number) {
+    if (!top) top = 10;
+
     if (game == 1 || game == 2 || game == 5)
-      return this.scoreService.findMaxScoreByUserAndGame(game);
-    else return this.scoreService.findMinScoreByUserAndGame(game);
+      return this.scoreService.findMaxScoreByUserAndGame(game, top);
+    else return this.scoreService.findMinScoreByUserAndGame(game, top);
   }
 }
