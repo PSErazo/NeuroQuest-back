@@ -31,7 +31,7 @@ export class ScoreService {
   }
 
   // debe obtener los scores agrupados por usuario
-  async findMaxScoreByUserAndGame(game: number) {
+  async findMaxScoreByUserAndGame(game: number, top: number) {
     console.log('entrando a maximo');
     const scoreGame = await this.scoreModule
       .aggregate([{ $match: { game } }])
@@ -45,12 +45,12 @@ export class ScoreService {
         maxPuntaje: 2,
       })
       .sort({ maxPuntaje: -1 })
-      .limit(10)
+      .limit(top)
       .exec();
     return scoreGame;
   }
 
-  async findMinScoreByUserAndGame(game: number) {
+  async findMinScoreByUserAndGame(game: number, top: number) {
     console.log('entrando al minimo');
     const scoreGame = await this.scoreModule
       .aggregate([{ $match: { game } }])
@@ -64,7 +64,7 @@ export class ScoreService {
         minPuntaje: 2,
       })
       .sort({ minPuntaje: 1 })
-      .limit(10)
+      .limit(top)
       .exec();
     return scoreGame;
   }
