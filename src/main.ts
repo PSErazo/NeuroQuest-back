@@ -9,16 +9,16 @@ async function bootstrap() {
 
   app.enableCors();
 
-  app.setGlobalPrefix('api/v1');
+  app.setGlobalPrefix('api/v1')
 
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
       transform: true,
-      enableDebugMessages: true,
-    }),
-  );
+      enableDebugMessages: true
+    })
+  )
 
   const config = new DocumentBuilder()
     .setTitle('API NeuroQuest')
@@ -28,6 +28,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('nq', app, document);
+
 
   await app.listen(port);
 }

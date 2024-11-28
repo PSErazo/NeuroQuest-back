@@ -7,13 +7,12 @@ import { jwtConstants } from './constants/jwt.constant';
 import { AuthGuard } from './guard/auth.guard';
 
 @Module({
-  imports: [
-    UserModule,
+  imports: [UserModule,
     JwtModule.register({
       global: true,
       // secret: process.env.SECRET,
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '1h' },
+      signOptions: { expiresIn: '5m' },
     }),
   ],
   providers: [AuthService],
