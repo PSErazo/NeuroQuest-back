@@ -25,7 +25,7 @@ export class ScoreService {
     console.log('entrando al servicio', email);
     const scores = await this.scoreModule
       .find({ email, game })
-      .sort({ date: 1 });
+      .sort({ date: -1 });
     console.log('entrando al servicio', scores);
     return scores;
   }
@@ -45,6 +45,7 @@ export class ScoreService {
         maxPuntaje: 2,
       })
       .sort({ maxPuntaje: -1 })
+      .limit(10)
       .exec();
     return scoreGame;
   }
@@ -57,7 +58,13 @@ export class ScoreService {
         _id: '$email',
         minPuntaje: { $min: '$score' },
       })
+      .project({
+        _id: 0,
+        email: '$_id',
+        minPuntaje: 2,
+      })
       .sort({ minPuntaje: 1 })
+      .limit(10)
       .exec();
     return scoreGame;
   }
