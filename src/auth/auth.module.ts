@@ -13,7 +13,7 @@ import { AuthGuard } from './guard/auth.guard';
       global: true,
       // secret: process.env.SECRET,
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '1h' },
+      signOptions: { expiresIn: '30m' },
     }),
   ],
   providers: [AuthService],
