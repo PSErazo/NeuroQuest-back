@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { HttpException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import { RegisterDto } from './dto/register.dto';
 
@@ -29,12 +29,12 @@ export class AuthService {
   async login(login: LoginDto) {
     const user = await this.usersService.findOneByEmail(login.email);
     if (!user) {
-      throw new UnauthorizedException('correo inorrecto');
+      throw new HttpException("USER_NOT_FOUND", 404);
     }
     // se puede usar un prefijo para volverlo mas seguridad.
     const isPasswordValid = await bcrypt.compare(login.password, user.password);
     if (!isPasswordValid) {
-      throw new UnauthorizedException('contraseña incorrecta');
+      throw new HttpException("PASSWORD_INVALID", 403);
     }
     const payload = {
       email: user.email,
